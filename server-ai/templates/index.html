@@ -1,0 +1,71 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Price Prediction</title>
+</head>
+<body>
+    <h1>Stock Prediction</h1>
+    <form action="/predict" method="post">
+        <label for="ticker">Enter Stock Ticker:</label>
+        <input type="text" id="ticker" name="ticker" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+        <h2>Result for {{ result.ticker }}</h2>
+        <p>Today Price: {{ result.today_price }}</p>
+        <p>Predicted 30th Day: {{ result.predicted_30th_day }}</p>
+        <p>{{ result.trend }}</p>
+        <img src="data:image/png;base64,{{ result.chart_base64 }}" alt="Prediction Chart">
+    {% endif %}
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Price Prediction</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+      h1, h2 {
+        font-family: Roboto;
+      }
+
+      h1 {
+        font-size: 4rem
+      }
+
+      body {
+        padding: 2vw 5vw;
+      }
+
+      body {
+        background-image: url('https://images.unsplash.com/photo-1745509267945-b25cbb4d50ef?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-size: cover;
+        background-position: end center;
+        background-attachment: fixed;
+      }
+
+      form{
+        padding-left: 0.5vw;
+      }
+    </style>
+</head>
+<body>
+    <h1>Stock Prediction</h1>
+    <form action="http://localhost:5000/predict" method="post">
+        <label for="ticker" style="font-size: 1.2em;">Enter Stock Ticker:</label>
+        <input type="text" id="ticker" name="ticker" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+        <h2>Result for {{ result.ticker }}</h2>
+        <p>Today Price: {{ result.today_price }}</p>
+        <p>Predicted 30th Day: {{ result.predicted_30th_day }}</p>
+        <p>{{ result.trend }}</p>
+        <img src="data:image/png;base64,{{ result.chart_base64 }}" alt="Prediction Chart">
+    {% endif %}
+</body>
+</html>

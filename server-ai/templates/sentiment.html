@@ -1,0 +1,168 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stock Sentiment Analyzer</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    input, button { padding: 8px; margin: 5px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background: #f2f2f2; }
+    #chart-container { width: 400px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+
+  <h1>Stock Sentiment Analyzer</h1>
+
+  <label for="stockName">Enter Stock/Company Name:</label>
+  <input type="text" id="stockName" placeholder="e.g. Tesla" />
+  <button onclick="analyzeSentiment()">Analyze</button>
+
+  <table id="resultsTable" style="display:none;">
+    <thead>
+      <tr>
+        <th>Tweet</th>
+        <th>Sentiment</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div id="chart-container" style="display:none;">
+    <canvas id="sentimentChart"></canvas>
+  </div>
+
+  <script>
+    async function analyzeSentiment() {
+      const stockName = document.getElementById("stockName").value.trim();
+      if (!stockName) {
+        alert("Please enter a stock/company name.");
+        return;
+      }
+
+      const response = await fetch("/analyze-sentiment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ stock_name: stockName })
+      });
+
+      const data = await response.json();
+
+      const table = document.getElementById("resultsTable");
+      const tbody = table.querySelector("tbody");
+      tbody.innerHTML = "";
+
+      if (data.tweets.length === 0) {
+        alert("No English tweets found for this stock.");
+        return;
+      }
+
+      data.results.forEach((item, index) => {
+        const row = tbody.insertRow();
+        const tweetCell = row.insertCell(0);
+        const sentimentCell = row.insertCell(1);
+        const scoreCell = row.insertCell(2);
+
+        tweetCell.textContent = data.tweets[index];
+        sentimentCell.textContent = item.label;
+        scoreCell.textContent = item.score.toFixed(2);
+      });
+
+      table.style.display = "table";
+
+      // Plot Pie Chart
+      const ctx = document.getElementById('sentimentChart').getContext('2d');
+      const counts = data.distribution;
+
+      const chartData = {
+        labels: Object.keys(counts),
+        datasets: [{
+          data: Object.values(counts),
+          backgroundColor: ['green', 'red', 'gold']
+        }]
+      };
+
+      document.getElementById("chart-container").style.display = "block";
+
+      if (window.sentimentChart) {
+        window.sentimentChart.destroy();
+      }
+
+      window.sentimentChart = new Chart(ctx, {
+        type: 'pie',
+        data: chartData,
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Sentiment Distribution'
+            }
+          }
+        }
+      });
+    }
+  </script>
+
+</body> 
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sentiment Analysis</title>
+  <style>
+          @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+      h1, h2 {
+        font-family: Roboto;
+      }
+
+      h1 {
+        font-size: 4rem
+      }
+
+      body {
+        padding: 2vw 5vw;
+      }
+
+      body {
+        background-image: url('https://images.unsplash.com/photo-1745509267945-b25cbb4d50ef?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-size: cover;
+        background-position: end center;
+        background-attachment: fixed;
+      }
+
+      form{
+        padding-left: 0.5vw;
+      }
+  </style>
+</head>
+<body>
+  <h1>Sentiment Analysis</h1>
+  <form action="/sentiment" method="post">
+    <label for="stock_name">Enter Stock Name:</label>
+    <input type="text" id="stock_name" name="stock_name" required />
+    <button type="submit">Analyze</button>
+  </form>
+
+  {% if result %}
+    <h2>Results for "{{ result.stock_name }}"</h2>
+
+    {% if result.error %}
+      <p style="color:rgb(0, 0, 0);">{{ result.error }}</p>
+    {% else %}
+      <p>Total Tweets Analyzed: {{ result.total_tweets }}</p>
+      <ul>
+        {% for label, count in result.summary.items() %}
+          <li>{{ label }}: {{ count }}</li>
+        {% endfor %}
+      </ul>
+      <img src="data:image/png;base64,{{ result.chart_base64 }}" alt="Sentiment Pie Chart" />
+    {% endif %}
+  {% endif %}
+</body>
+</html>
