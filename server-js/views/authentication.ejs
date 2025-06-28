@@ -17,16 +17,9 @@
     </style>
 </head>
 <body class="relative w-full h-full">
-    <div class="w-full h-[100vh] relative" style="background: linear-gradient(135deg, 
-  #6e1c91,   /* deep violet */
-  #c5299b,   /* magenta */
-  #ff4dbd,   /* hot pink */
-  #f06595,   /* light pink */
-  #a0c4ff    /* soft blue */
-);
-">
+    <div class="w-full h-[100vh] relative" style="background-image: url('https://img.freepik.com/premium-vector/business-candle-stick-graph-chart-stock-market-investment_41981-866.jpg?semt=ais_items_boosted&w=740'); background-size: cover; background-position: center;">
       <div class="signin absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-4 text-center" style="display: none;">
-        <h1 class="text-center text-3xl mb-5 text-white">Sign in</h1>
+        <h1 class="text-center text-3xl mb-5 text-[#101010]">Sign in</h1>
         <form action="/login" class="flex flex-col gap-4" method="post">
           <input type="email" name="email" placeholder="Email" class="p-2 focus:outline-none bg-[#232323] text-white" style="width: 20rem;" autocomplete="off" required>
           <div style="width: 20rem;" class="relative">
@@ -35,13 +28,13 @@
               <i class="ri-eye-off-line"></i>
             </button>
           </div>
-          <button type="submit" class="bg-white text-[#101010] p-2" style="width: 20rem;">Sign in</button>
+          <button type="submit" class="bg-white text-[#101010] p-2" style="width: 20rem;border: 1px solid slategrey;">Sign in</button>
         </form>
-        <span class="new mt-6 underline inline-block text-[white]" style="cursor: pointer;">New to Note-taking? Create an account.</span>
+        <span class="new mt-6 underline inline-block text-[#101010]" style="cursor: pointer;">New to Note-taking? Create an account.</span>
       </div>
 
       <div class="signup absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-4 text-center">
-        <h1 class="text-center text-3xl mb-5 text-white">Sign up</h1>
+        <h1 class="text-center text-3xl mb-5 text-[#101010]">Sign up</h1>
         <form action="/register" class="flex flex-col gap-4" method="post">
           <input type="text" name="name" placeholder="Name" class="p-2 focus:outline-none bg-[#232323] text-white" style="width: 20rem;" autocomplete="off" required>
           <input type="text" name="username" placeholder="Username" class="p-2 focus:outline-none bg-[#232323] text-white" style="width: 20rem;" autocomplete="off" required>
@@ -52,9 +45,9 @@
               <i class="ri-eye-off-line"></i>
             </button>
           </div>
-          <button type="submit" class="bg-white text-[#101010] p-2" style="width: 20rem;">Sign up</button>
+          <button type="submit" class="bg-white text-[#101010] p-2" style="width: 20rem;border: 1px solid slategrey;">Sign up</button>
         </form>
-        <span class="login mt-6 underline inline-block text-[white] hover:text-white" style="cursor: pointer;">Already have an account? Login now.</span>
+        <span class="login mt-6 underline inline-block text-[#101010]" style="cursor: pointer;">Already have an account? Login now.</span>
       </div>
 
       <div class="layer absolute w-full h-full bg-[white] inset-0 z-10" style="transform: scaleY(0); transform-origin: bottom 0 left 0;"></div>
@@ -137,4 +130,3 @@
     </script>
 </body>
 </html>
-
