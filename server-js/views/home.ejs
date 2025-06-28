@@ -1,0 +1,57 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Stock Predictor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://img.freepik.com/premium-vector/business-candle-stick-graph-chart-stock-market-investment_41981-866.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+    .overlay {
+      /* background-color: rgba(0, 0, 0, 0.7); */
+      min-height: 100vh;
+      padding: 4rem 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1 class="text-5xl font-bold text-blue-400 text-center mb-12">SMART STOCK PREDICTOR</h1>
+    <main class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Card 1 -->
+      <a href="/prediction" class="block bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
+        <h2 class="text-2xl font-semibold text-blue-400 mb-2">📈 Price Prediction</h2>
+        <p class="text-black">Predict future stock prices using AI-powered models based on company performance and trends.</p>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="/sentiment" class="block bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
+        <h2 class="text-2xl font-semibold text-green-400 mb-2">💬 Sentimental Analysis</h2>
+        <p class="text-black">Understand the market sentiment around a company using Hugging Face NLP models.</p>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="/risk" class="block bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
+        <h2 class="text-2xl font-semibold text-yellow-400 mb-2">⚠ Risk Assumed Score</h2>
+        <p class="text-black">Evaluate the risk involved in a stock using historical volatility and performance metrics.</p>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="/future" class="block bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
+        <h2 class="text-2xl font-semibold text-purple-400 mb-2">🚀 Future Scope</h2>
+        <p class="text-black">Discover upcoming features including mobile app integration, real-time analysis and crypto support.</p>
+      </a>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,13 +1,79 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>HOME | stock-ai-app</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Stock Predictor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-image: url('https://img.freepik.com/premium-vector/business-candle-stick-graph-chart-stock-market-investment_41981-866.jpg?semt=ais_items_boosted&w=740');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .glow-button {
+      background: linear-gradient(to right, #3b82f6, #6366f1);
+      box-shadow: 0 0 12px #3b82f6;
+    }
+
+    .glow-button:hover {
+      box-shadow: 0 0 18px #6366f1;
+      transform: scale(1.05);
+    }
+
+    .animated-gradient {
+      background: linear-gradient(to right, #3b82f6, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slide 4s infinite alternate;
+    }
+
+    @keyframes slide {
+      from {
+        background-position: 0%;
+      }
+      to {
+        background-position: 100%;
+      }
+    }
+  </style>
 </head>
-<body>
-    <h1>Hello world</h1>
+<body class="text-gray-800">
+  <div class="flex items-center justify-center min-h-screen px-6">
+    <div class="glass max-w-3xl w-full p-10 text-center">
+      
+      <!-- Title -->
+      <h1 class="text-5xl font-extrabold animated-gradient mb-4">Smart Stock Predictor</h1>
+      
+      <!-- Tagline -->
+      <p class="text-lg text-gray-700 font-medium mb-6">An intelligent, AI-powered solution for forecasting market trends.</p>
+
+      <!-- Description -->
+      <p class="text-base text-gray-800 leading-relaxed mb-8">
+        Smart Stock Predictor is an AI-driven platform designed to forecast stock market prices using historical trends,
+        real-time data, and financial sentiment. Built for both novice and expert investors, the system offers stock price prediction,
+        explainability, risk scoring, and future integration with crypto and commodity markets. 
+        It's accurate, scalable, and tailored for decision-making in dynamic financial environments.
+      </p>
+
+      <!-- Login Button -->
+      <a href="/authentication" class="inline-block glow-button text-white font-bold py-3 px-8 rounded-xl transition transform duration-300">
+        🔐 Login to Continue
+      </a>
+
+      <!-- Footer -->
+      <p class="mt-10 text-sm text-gray-600">&copy; 2025 Smart Stock Predictor | Built for IIITM Gwalior Hackathon</p>
+    </div>
+  </div>
 </body>
 </html>

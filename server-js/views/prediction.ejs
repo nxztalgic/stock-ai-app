@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stock Price Prediction</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-image: url('https://img.freepik.com/premium-vector/business-candle-stick-graph-chart-stock-market-investment_41981-866.jpg?semt=ais_items_boosted&w=740');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center text-gray-800 px-4">
+  <div class="glass max-w-xl w-full p-8">
+    <h1 class="text-3xl font-bold text-blue-700 text-center mb-4">Stock Price Prediction</h1>
+    <p class="text-center text-gray-700 mb-6">
+      Enter the company name and select a date range to get an AI-powered forecast.
+    </p>
+
+    <form id="predictForm" class="space-y-4">
+      <input type="text" id="company" placeholder="Enter company name (e.g. Tesla)" required
+        class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="startDate" class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+          <input type="date" id="startDate" required
+            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div>
+          <label for="endDate" class="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+          <input type="date" id="endDate" required
+            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+      </div>
+
+      <button type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+        🔍 Predict
+      </button>
+    </form>
+
+    <div id="result" class="mt-6 p-4 bg-white border rounded-lg text-center text-lg font-medium text-gray-800 hidden"></div>
+  </div>
+
+  <script>
+    document.getElementById("predictForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const company = document.getElementById("company").value;
+      const startDate = document.getElementById("startDate").value;
+      const endDate = document.getElementById("endDate").value;
+
+      const response = await fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ company, startDate, endDate })
+      });
+
+      const data = await response.json();
+      const resultBox = document.getElementById("result");
+      resultBox.classList.remove("hidden");
+      resultBox.innerText = data.prediction ? "📈 Prediction: " + data.prediction : "⚠️ " + data.error;
+    });
+  </script>
+</body>
+</html>

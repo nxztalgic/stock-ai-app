@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Note Taking 0613</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Baskervville&family=Space+Mono&display=swap');
+
+      button, span {
+        font-family: monospace !important;
+      }
+
+    </style>
+</head>
+<body class="relative w-full h-full">
+    <div class="w-full h-[100vh] relative" style="background: linear-gradient(135deg, 
+  #6e1c91,   /* deep violet */
+  #c5299b,   /* magenta */
+  #ff4dbd,   /* hot pink */
+  #f06595,   /* light pink */
+  #a0c4ff    /* soft blue */
+);
+">
+      <div class="signin absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-4 text-center" style="display: none;">
+        <h1 class="text-center text-3xl mb-5 text-white">Sign in</h1>
+        <form action="/login" class="flex flex-col gap-4" method="post">
+          <input type="email" name="email" placeholder="Email" class="p-2 focus:outline-none bg-[#232323] text-white" style="width: 20rem;" autocomplete="off" required>
+          <div style="width: 20rem;" class="relative">
+            <input id="password" type="password" name="password" placeholder="Password" class="p-2 focus:outline-none bg-[#232323] w-full text-white" autocomplete="off" required>
+            <button class="text-white absolute top-1/2 right-1 -translate-x-1/2 -translate-y-1/2 z-[10]">
+              <i class="ri-eye-off-line"></i>
+            </button>
+          </div>
+          <button type="submit" class="bg-white text-[#101010] p-2" style="width: 20rem;">Sign in</button>
+        </form>
+        <span class="new mt-6 underline inline-block text-[white]" style="cursor: pointer;">New to Note-taking? Create an account.</span>
+      </div>
+
+      <div class="signup absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-4 text-center">
+        <h1 class="text-center text-3xl mb-5 text-white">Sign up</h1>
+        <form action="/register" class="flex flex-col gap-4" method="post">
+          <input type="text" name="name" placeholder="Name" class="p-2 focus:outline-none bg-[#232323] text-white" style="width: 20rem;" autocomplete="off" required>
+          <input type="text" name="username" placeholder="Username" class="p-2 focus:outline-none bg-[#232323] text-white" style="width: 20rem;" autocomplete="off" required>
+          <input type="email" name="email" placeholder="Email" class="p-2 focus:outline-none bg-[#232323] text-white" style="width: 20rem;" autocomplete="off" required>
+          <div style="width: 20rem;" class="relative">
+            <input id="password" type="password" name="password" placeholder="Password" class="p-2 focus:outline-none bg-[#232323] w-full text-white" autocomplete="off" required>
+            <button class="text-white absolute top-1/2 right-1 -translate-x-1/2 -translate-y-1/2 z-[2]">
+              <i class="ri-eye-off-line"></i>
+            </button>
+          </div>
+          <button type="submit" class="bg-white text-[#101010] p-2" style="width: 20rem;">Sign up</button>
+        </form>
+        <span class="login mt-6 underline inline-block text-[white] hover:text-white" style="cursor: pointer;">Already have an account? Login now.</span>
+      </div>
+
+      <div class="layer absolute w-full h-full bg-[white] inset-0 z-10" style="transform: scaleY(0); transform-origin: bottom 0 left 0;"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+
+      const icons = document.body.querySelectorAll('i')
+      const password = document.body.querySelector('#password');
+      icons.forEach((icon)=>{
+        icon.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (password.type === 'password') {
+          password.type = 'text';
+          icon.classList.remove('ri-eye-off-line');
+          icon.classList.add('ri-eye-line');
+        } else {
+          password.type = 'password';
+          icon.classList.remove('ri-eye-line');
+          icon.classList.add('ri-eye-off-line');
+        }
+      });
+      })
+
+      const login = document.body.querySelector('.login');
+      const newAccount = document.body.querySelector('.new')
+      const layer = document.body.querySelector('.layer')
+      const signup = document.body.querySelector('.signup')
+      const signin = document.body.querySelector('.signin')
+
+      login.addEventListener('click', ()=>{
+        let tl = gsap.timeline()
+        tl.to(layer, {
+          scaleY: 1,
+          duration: 0.7,
+          ease: 'power4.in',
+          transformOrigin: 'bottom 0 left 0'
+        })
+        .to(signup, {
+          display: "none"
+        }, "-=0.5")
+        .to(signin, {
+          display: "block"
+        }, "-=0.5")
+        .to(layer, {
+          scaleY: 0,
+          duration: 1,
+          ease: 'power4.inOut',
+          transformOrigin: 'top 0 left 0'
+        })
+
+        gsap.set(layer, {scaleY: 0, transformOrigin: 'bottom 0 left 0'})
+      })
+
+
+      newAccount.addEventListener('click', ()=>{
+        let tl = gsap.timeline()
+        tl.to(layer, {
+          scaleY: 1,
+          duration: 0.7,
+          ease: 'power4.in',
+          transformOrigin: 'bottom 0 left 0'
+        })
+        .to(signin, {
+          display: "none"
+        })
+        .to(signup, {
+          display: "block"
+        }, "-=0.5")
+        .to(layer, {
+          scaleY: 0,
+          duration: 1,
+          ease: 'power4.inOut',
+          transformOrigin: 'top 0 left 0'
+        }, "-=0.5")
+
+        gsap.set(layer, {scaleY: 0, transformOrigin: 'bottom 0 left 0'})
+      })
+    </script>
+</body>
+</html>
+
