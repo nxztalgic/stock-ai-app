@@ -69,7 +69,7 @@
     document.getElementById("riskForm").addEventListener("submit", function(e) {
       e.preventDefault();
       const stock = document.getElementById("stock").value;
-      const score = Math.random(); // Placeholder logic
+      const score = Math.random(); 
       let riskLevel = "Moderate";
       if (score > 0.7) riskLevel = "High";
       else if (score < 0.3) riskLevel = "Low";
