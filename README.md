@@ -1,3 +1,11 @@
+stock-sense guide : 
+
+------------------------------------------------------------------------------------------------------
+    all these are the basic dependencies for the project stock-sense . 
+    run npx nodemon app.js in the terminal of server-js
+    run app.py in separate terminal 
+    navigate through the localhost:3000/landing 
+    
 requirments : 
 "bcrypt": "^6.0.0",
     "config": "^4.0.0",
@@ -31,9 +39,3 @@ requirments :
     node js 
     mongodb compass
     html . 
-------------------------------------------------------------------------------------------------------
-    all these are the basic dependencies for the project stock-sense . 
-    run npx nodemon app.js in the terminal of server-js
-    run app.py in separate terminal 
-    navigate through the localhost:3000/landing 
-    
